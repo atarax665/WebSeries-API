@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "webseries.com/grpc/protos";
+option java_multiple_files = true;
+option java_package = "io.grpc.app1.seriesapp";
+option java_outer_classname = "SeriesAppProto";
+option objc_class_prefix = "MAP";
+
+package moviesapp;
+
+service Series {
+	rpc GetAllSeries (Empty) returns (stream SeriesInfo);
+	rpc GetSeries (Id) returns (SeriesInfo);
+	rpc AddSeries (SeriesInfo) returns (Id);
+	rpc UpdateSeries (SeriesInfo) returns (Status);
+	rpc DeleteSeries (Id) returns (Status);
+}
+
+message Empty {}
+
+message SeriesInfo {
+	string id = 1;
+	string isbn = 2;
+	string title = 3;
+	Character character = 4;
+}
+
+message Character {
+	string firstname = 1;
+	string lastname = 2;
+}
+
+message Id {
+	string value = 1;
+}
+
+message Status {
+	int32 value = 1; 
+}
+
