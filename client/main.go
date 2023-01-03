@@ -23,12 +23,12 @@ func main() {
 	client := pb.NewSeriesClient(conn)
 
 	runGetAllSeries(client)
-	// runGetMovie(client, "1")
-	// runCreateMovie(client, "2", "Deadpool",
+	// runGetSeries(client, "1")
+	// runAddSeries(client, "2", "Deadpool",
 	// 	"Abhinav", "Anand")
-	// runUpdateMovie(client, "98498081", "24325645", "Spiderman Spiderverse",
+	// runUpdateSeries(client, "98498081", "24325645", "Spiderman Spiderverse",
 	// 	"Peter", "Parker")
-	// runDeleteMovie(client, "98498081")
+	// runDeleteSeries(client, "98498081")
 }
 
 func runGetAllSeries(client pb.SeriesClient) {
@@ -51,7 +51,7 @@ func runGetAllSeries(client pb.SeriesClient) {
 	}
 }
 
-func runGetMovie(client pb.SeriesClient, movieid string) {
+func runGetSeries(client pb.SeriesClient, movieid string) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	req := &pb.Id{Value: movieid}
@@ -62,7 +62,7 @@ func runGetMovie(client pb.SeriesClient, movieid string) {
 	log.Printf("SeriesInfo: %v", res)
 }
 
-func runCreateMovie(client pb.SeriesClient, isbn string,
+func runAddSeries(client pb.SeriesClient, isbn string,
 	title string, firstname string, lastname string) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
@@ -81,7 +81,7 @@ func runCreateMovie(client pb.SeriesClient, isbn string,
 
 }
 
-func runUpdateMovie(client pb.SeriesClient, movieid string,
+func runUpdateSeries(client pb.SeriesClient, movieid string,
 	isbn string, title string, firstname string, lastname string) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
@@ -99,7 +99,7 @@ func runUpdateMovie(client pb.SeriesClient, movieid string,
 	}
 }
 
-func runDeleteMovie(client pb.SeriesClient, movieid string) {
+func runDeleteSeries(client pb.SeriesClient, movieid string) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	req := &pb.Id{Value: movieid}
